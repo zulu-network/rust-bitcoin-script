@@ -303,6 +303,11 @@ pub fn define_pushable(_: TokenStream) -> TokenStream {
                     builder.push_key(&self)
                 }
             }
+            impl NotU8Pushable for ::bitcoin::XOnlyPublicKey {
+                fn bitcoin_script_push(self, builder: Builder) -> Builder {
+                    builder.push_x_only_key(&self)
+                }
+            }
             impl NotU8Pushable for ::bitcoin::ScriptBuf {
                 fn bitcoin_script_push(self, builder: Builder) -> Builder {
                     let (optimal, replacement_opcode) =
