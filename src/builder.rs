@@ -66,6 +66,13 @@ impl Builder {
         self.size
     }
 
+    pub fn clear(&mut self) {
+        self.size = 0;
+        self.stack_hint = None;
+        self.blocks = vec![];
+        self.script_map = HashMap::new();
+    }
+
     fn get_script_block(&mut self) -> &mut ScriptBuf {
         // Check if the last block is a Script block
         let is_script_block = match self.blocks.last_mut() {
